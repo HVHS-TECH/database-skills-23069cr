@@ -7,15 +7,15 @@
 // Input:  n/a
 // Return: n/a
 /**************************************************************/
-  const firebaseConfig = {
-    apiKey: ,
-    authDomain: ,
-    databaseURL: ,
-    projectId: ,
-    storageBucket: ,
-    messagingSenderId:,
-    appId:
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyCk102EjA3cGbhDOmPXucRhwaLa_OCKvPQ",
+  authDomain: "cobyrollo-12comp.firebaseapp.com",
+  databaseURL: "https://cobyrollo-12comp-default-rtdb.firebaseio.com",
+  projectId: "cobyrollo-12comp",
+  storageBucket: "cobyrollo-12comp.firebasestorage.app",
+  messagingSenderId: "336583454402",
+  appId: "1:336583454402:web:fc9d396e2dace7f3ea155b"
+};
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
