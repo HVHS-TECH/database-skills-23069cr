@@ -10,7 +10,7 @@
 const firebaseConfig = {
   apiKey: "AIzaSyCk102EjA3cGbhDOmPXucRhwaLa_OCKvPQ",
   authDomain: "cobyrollo-12comp.firebaseapp.com",
-  databaseURL: "https://cobyrollo-12comp-default-rtdb.firebaseio.com/",
+  databaseURL: "https://cobyrollo-12comp-default-rtdb.firebaseio.com",
   projectId: "cobyrollo-12comp",
   storageBucket: "cobyrollo-12comp.firebasestorage.app",
   messagingSenderId: "336583454402",
