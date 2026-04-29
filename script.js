@@ -27,6 +27,29 @@ function helloWorld() {
   )
 }
 
+
+highscores = {
+  game1: {
+    users: {
+      Lukas: 99999,
+      Josh: 10000,
+      Coby: 9,
+      Pasha: 987654321,
+    }
+  },
+  game2: {
+    users: {
+      Seb: 2345678,
+      Devesh: 434978597626592745,
+      Lucas: 1,
+      Callum: 67,
+    }
+  }
+}
+firebase.database().ref('/').set(highscores)
+
+
+
 function DO_THIS(snapshot) {
   console.log(snapshot.val());
 }
@@ -46,7 +69,7 @@ function displayRead(snapshot) {
 function display(snapshot) {
   var dbData = snapshot.val();
   if (dbData == null) {
-    console.log('No message stupid');
+    console.log("No message stupid");
   }
   else {
     console.log("The message is: " + dbData)
@@ -67,3 +90,10 @@ function goodbye() {
     }
   )
 }
+
+function fb_readListener() {
+  console.log("Read Listener");
+  firebase.database().ref('/message').on('value', displayRead);
+}
+
+
