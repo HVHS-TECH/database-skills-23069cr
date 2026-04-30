@@ -28,6 +28,7 @@ function helloWorld() {
 }
 
 
+
 highscores = {
   game1: {
     users: {
@@ -48,6 +49,20 @@ highscores = {
 }
 firebase.database().ref('/').set(highscores)
 
+let user = prompt("What is your name?");
+console.log("user: " + user);
+let score = 0;
+console.log("score: " + score);
+firebase.database().ref('/game1/users/'+user).set(
+  score
+);
+
+function scoresystem() {
+  console.log("score: " + score);
+  firebase.database().ref('/game1/users/'+user).set(
+  score = score + 1
+);
+}
 
 
 function DO_THIS(snapshot) {
