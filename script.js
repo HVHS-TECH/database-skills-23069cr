@@ -64,6 +64,10 @@ function scoresystem() {
 );
 }
 
+function fb_readHighScores ( ){
+console. log("Reading High scores");
+firebase.database().ref('/highscores/game1' ).once('value', displayRead, fb_readError);
+}
 
 function DO_THIS(snapshot) {
   console.log(snapshot.val());
