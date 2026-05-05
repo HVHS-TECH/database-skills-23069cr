@@ -29,7 +29,7 @@ function helloWorld() {
 
 
 
-highscores = {
+highScores = {
   game1: {
     users: {
       Lukas: 99999,
@@ -47,7 +47,8 @@ highscores = {
     }
   }
 }
-firebase.database().ref('/').set(highscores)
+firebase.database().ref('/').set(highScores)
+
 
 let user = prompt("What is your name?");
 console.log("user: " + user);
@@ -56,6 +57,14 @@ console.log("score: " + score);
 firebase.database().ref('/game1/users/'+user).set(
   score
 );
+//displays scores in Objects//
+let names = ["Lukas", "Josh", "Coby", "Pasha", user];
+
+for (let i = 0; i < names.length; i++) {
+  let key = names[i];
+console. log("User "+i+" "+ key +" has the score of. "+ highScores['game1']['users'][key] + " points." )
+}
+
 
 function scoresystem() {
   console.log("score: " + score);
@@ -64,10 +73,17 @@ function scoresystem() {
 );
 }
 
+// This function reads the high scores for game1 and logs them to the console//
 function fb_readHighScores ( ){
 console. log("Reading High scores");
-firebase.database().ref('/highscores/game1' ).once('value', displayRead, fb_readError);
+firebase.database().ref('game1/users' ).once('value', fb_logDatabaseRead, fb_readError);
 }
+function fb_logDatabaseRead(snapshot) {
+let data = snapshot.val();
+console.log("data");
+console.log(data);
+}
+
 
 function DO_THIS(snapshot) {
   console.log(snapshot.val());
