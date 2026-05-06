@@ -54,51 +54,27 @@ let user = prompt("What is your name?");
 console.log("user: " + user);
 let score = 0;
 console.log("score: " + score);
-firebase.database().ref('/game1/users/'+user).set(
+firebase.database().ref('/game1/users/' + user).set(
   score
 );
+
+
 //displays scores in Objects//
 let names = ["Lukas", "Josh", "Coby", "Pasha", user];
 
 for (let i = 0; i < names.length; i++) {
   let key = names[i];
-console. log("User "+i+" "+ key +" has the score of. "+ highScores['game1']['users'][key] + " points." )
+  console.log("User " + i + " " + key + " has the score of. " + highScores['game1']['users'][key] + " points.")
 }
 
 
 function scoresystem() {
   console.log("score: " + score);
-  firebase.database().ref('/game1/users/'+user).set(
-  score = score + 1
-);
+  firebase.database().ref('/game1/users/' + user).set(
+    score = score + 1
+  );
 }
 
-// This function reads the high scores for game1 and logs them to the console//
-function fb_readHighScores ( ){
-console. log("Reading High scores");
-firebase.database().ref('game1/users' ).once('value', fb_logDatabaseRead, fb_readError);
-}
-function fb_logDatabaseRead(snapshot) {
-let data = snapshot.val();
-console.log("data");
-console.log(data);
-}
-
-
-function DO_THIS(snapshot) {
-  console.log(snapshot.val());
-}
-
-function simpleRead() {
-  console.log("Reading message");
-  firebase.database().ref('/').child('message').once('value', displayRead);
-  console.log("Leaving simpleRead")
-}
-
-function displayRead(snapshot) {
-  console.log("Running displayRead(), the message is: " + snapshot.val())
-  HTML_OUTPUT.innerHTML = snapshot.val();
-}
 
 
 function display(snapshot) {
@@ -111,11 +87,7 @@ function display(snapshot) {
   }
 }
 
-function fb_readError(error) {
-  firebase.database().ref('/').child('message').once('value', displayfb_readError);
-  console.log("There was an error reading the message");
-  console.error(error);
-}
+
 
 function goodbye() {
   console.log("Running goodbye()")
