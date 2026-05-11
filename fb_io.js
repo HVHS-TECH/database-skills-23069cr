@@ -10,15 +10,18 @@
 
 
 // This function reads the high scores for game1 and logs them to the console//
-function fb_readHighScores() {
-    console.log("Reading High scores");
-    firebase.database().ref('game2/users') .once('value', fb_displayHighScores, fb_readError);
-}
+
 
 function fb_displayLowestScores() {
     console.log("Reading Lowest scores");
     firebase.database().ref('game2/users') .orderByValue() .once('value', fb_displayHighScores, fb_readError);
 }
+
+
+
+
+
+
 
 function fb_displayHighScores(snapshot) {
     snapshot.forEach(fb_showOneScore);
@@ -56,7 +59,6 @@ function displayRead(snapshot) {
 
 //error stuff//
 function fb_readError(error) {
-    firebase.database().ref('/').child('message').once('value', fb_readError);
     console.log("There was an error reading the message");
     console.error(error);
 }

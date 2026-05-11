@@ -60,13 +60,29 @@ firebase.database().ref('/game1/users/' + user).set(
 
 
 //displays scores in Objects//
-let names = ["Lukas", "Josh", "Coby", "Pasha", user];
-
-for (let i = 0; i < names.length; i++) {
-  let key = names[i];
-  console.log("User " + i + " " + key + " has the score of. " + highScores['game1']['users'][key] + " points.")
+function fb_readHighScores() {
+  let names = ["Lukas", "Josh", "Coby", "Pasha", user];
+   console.log("Reading Lowest scores");
+    firebase.database().ref('game1/users') .orderByValue() .once('value', sortDisplay, fb_readError);
+  for (let i = 0; i < names.length; i++) {
+    let key = names[i];
+    console.log("User " + i + " " + key + " has the score of. " + highScores['game1']['users'][key] + " points.")
+  }
 }
-
+function sortDisplay(snapshot) {
+  let datadisplay = snapshot.val();
+  console.log(snapshot.val());
+  if (datadisplay == null) {
+    HTML_OUTPUT.innerHTML = "";
+  } else {
+    snapshot.forEach(sortData)
+  }
+}
+function sortData(string) {
+  let data = string.val();
+  console.log(data);
+ // for //
+}
 
 function scoresystem() {
   console.log("score: " + score);
