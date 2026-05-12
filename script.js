@@ -50,46 +50,58 @@ highScores = {
 firebase.database().ref('/').set(highScores)
 
 
-let user = prompt("What is your name?");
-console.log("user: " + user);
-let score = 0;
-console.log("score: " + score);
-firebase.database().ref('/game1/users/' + user).set(
-  score
-);
+//let user = prompt("What is your name?");
+//console.log("user: " + user);
+//let score = 0;
+//console.log("score: " + score);
+//firebase.database().ref('/game1/users/' + user).set(
+// score
+//);
 
 
 //displays scores in Objects//
 function fb_readHighScores() {
-  let names = ["Lukas", "Josh", "Coby", "Pasha", user];
-   console.log("Reading Lowest scores");
-    firebase.database().ref('game1/users') .orderByValue() .once('value', sortDisplay, fb_readError);
+  let names = ["Lukas", "Josh", "Coby", "Pasha"];
+  console.log("Reading Lowest scores");
   for (let i = 0; i < names.length; i++) {
     let key = names[i];
     console.log("User " + i + " " + key + " has the score of. " + highScores['game1']['users'][key] + " points.")
   }
 }
-function sortDisplay(snapshot) {
-  let datadisplay = snapshot.val();
-  console.log(snapshot.val());
-  if (datadisplay == null) {
-    HTML_OUTPUT.innerHTML = "";
-  } else {
-    snapshot.forEach(sortData)
-  }
+
+function fb_readSortedHighScores() {
+  console.log("Reading Lowest scores");
+  firebase.database().ref('game1/users').orderByValue().once('value', sortDisplay, fb_readError);
 }
-function sortData(string) {
-  let data = string.val();
-  console.log(data);
- // for //
+function sortDisplay(snapshot) {
+  console.log(snapshot.val());
+  snapshot.forEach(handleOne);
 }
 
-function scoresystem() {
-  console.log("score: " + score);
-  firebase.database().ref('/game1/users/' + user).set(
-    score = score + 1
-  );
+function handleOne(child) {
+  console.log(child.key);
+  console.log(child.val());
 }
+
+//reads each child's score//
+function fb_showOneScore(child) {
+  console.log(child.key + " got " + child.val() + " points");
+}
+
+function DO_THIS(snapshot) {
+  console.log(snapshot.val());
+}
+//function sortData(string) {
+//  let data = string.val();
+//  console.log(data);
+//}
+
+//function scoresystem() {
+//  console.log("score: " + score);
+//  firebase.database().ref('/game1/users/' + user).set(
+//    score = score + 1
+//  );
+//}
 
 
 
@@ -120,3 +132,11 @@ function fb_readListener() {
 }
 
 
+
+function fb_popupLogin() {
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then((result) => {
+    GLOBAL_user = result.user; // Save the user details object to a global variable
+    console.log("User has logged in")
+  });
+}
