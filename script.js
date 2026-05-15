@@ -29,26 +29,6 @@ function helloWorld() {
 
 
 
-highScores = {
-  game1: {
-    users: {
-      Lukas: 99999,
-      Josh: 10000,
-      Coby: 9,
-      Pasha: 987654321,
-    }
-  },
-  game2: {
-    users: {
-      Seb: 2345678,
-      Devesh: 434978597626592745,
-      Lucas: 1,
-      Callum: 67,
-    }
-  }
-}
-firebase.database().ref('/').set(highScores)
-
 
 //let user = prompt("What is your name?");
 //console.log("user: " + user);
@@ -65,12 +45,37 @@ function fb_readHighScores() {
   console.log("Reading Lowest scores");
   for (let i = 0; i < names.length; i++) {
     let key = names[i];
-    console.log("User " + i + " " + key + " has the score of. " + highScores['game1']['users'][key] + " points.")
+    console.log("User " + i + " " + key + " has the score of. " + highscoreTable['game1']['users'][key] + " points.")
+    let text = "";
   }
 }
 
+
+
+  highscoreTable = {
+    game1: {
+      users: {
+        Josh: 99999,
+        Coby: 10000,
+        Pasha: 67767675858477485,
+        Lukas: 345,
+      }
+    },
+    game2: {
+      users: {
+        Josh: 13,
+        Coby: 14,
+        Pasha: 7,
+        Lukas: 3,
+      }
+    }
+  }
+  firebase.database().ref('/').set(highscoreTable)
+
+
 function fb_readSortedHighScores() {
   console.log("Reading Lowest scores");
+  firebase.database().ref('game1/users/Josh').set(1)
   firebase.database().ref('game1/users').orderByValue().once('value', sortDisplay, fb_readError);
 }
 function sortDisplay(snapshot) {
