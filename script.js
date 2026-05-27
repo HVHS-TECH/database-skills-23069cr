@@ -30,13 +30,13 @@ function helloWorld() {
 
 
 
-//let user = prompt("What is your name?");
-//console.log("user: " + user);
-//let score = 0;
-//console.log("score: " + score);
-//firebase.database().ref('/game1/users/' + user).set(
-// score
-//);
+let user = prompt("What is your name?");
+console.log("user: " + user);
+let score = 0;
+console.log("score: " + score);
+firebase.database().ref('/game1/users/' + user).set(
+  score
+);
 
 
 //displays scores in Objects//
@@ -52,25 +52,25 @@ function fb_readHighScores() {
 
 
 
-  highscoreTable = {
-    game1: {
-      users: {
-        Josh: 99999,
-        Coby: 10000,
-        Pasha: 67767675858477485,
-        Lukas: 345,
-      }
-    },
-    game2: {
-      users: {
-        Josh: 13,
-        Coby: 14,
-        Pasha: 7,
-        Lukas: 3,
-      }
+highscoreTable = {
+  game1: {
+    users: {
+      Josh: 99999,
+      Coby: 10000,
+      Pasha: 67767675858477485,
+      Lukas: 345,
+    }
+  },
+  game2: {
+    users: {
+      Josh: 13,
+      Coby: 14,
+      Pasha: 7,
+      Lukas: 3,
     }
   }
-  firebase.database().ref('/').set(highscoreTable)
+}
+firebase.database().ref('/').set(highscoreTable)
 
 
 function fb_readSortedHighScores() {
@@ -101,12 +101,12 @@ function DO_THIS(snapshot) {
 //  console.log(data);
 //}
 
-//function scoresystem() {
-//  console.log("score: " + score);
-//  firebase.database().ref('/game1/users/' + user).set(
-//    score = score + 1
-//  );
-//}
+function scoresystem() {
+  console.log("score: " + score);
+  firebase.database().ref('/game1/users/' + user).set(
+    score = score + 1
+  );
+}
 
 
 
